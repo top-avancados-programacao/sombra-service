@@ -1,5 +1,6 @@
 package br.edu.unirn.sombraservice.entity
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import org.hibernate.validator.constraints.Email
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Past
 
 @Entity
 @ToString
@@ -27,12 +29,12 @@ class Usuario {
     @Column(unique = true)
     String email
 
+    @NotNull
     String senha
 
     int senhaNumerica
 
     @NotNull
-    @Column(nullable = false)
     String telefone
 
     @Column(length = 200)
@@ -41,6 +43,8 @@ class Usuario {
     Boolean ativo = Boolean.TRUE
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Past
+    @JsonFormat(pattern = "dd/MM/yyyy")
     Date dataNascimento
 
     @Temporal(TemporalType.TIMESTAMP)

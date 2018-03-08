@@ -17,15 +17,18 @@ class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
     void onApplicationEvent(ApplicationReadyEvent event) {
 
         def usuario =
-                new Usuario(email: "romulo.fagundes@gmail.com",senhaNumerica: 1234,telefone: "988855315")
+                new Usuario(email: "romulo.fagundes@gmail.com",senhaNumerica: 1234,telefone: "988855315", senha: "123")
         def usuario2 =
-                new Usuario(email: "romulofc@unirn.edu.br",senhaNumerica: 1234,telefone: "988855315")
+                new Usuario(email: "romulofc@unirn.edu.br",senhaNumerica: 1234,telefone: "988855315", senha: "123")
         usuarioRepository.save(usuario)
         usuarioRepository.save(usuario2)
 
         usuarioRepository.findAll().each {Usuario u->
-            println u
+            //println u
         }
+
+        def usuarioRetorno = usuarioRepository.findByEmail("romulo.fagundes@gmail.com")
+        println "Usuario encontrado: ${usuarioRetorno.id}"
 
     }
 }
