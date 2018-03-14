@@ -27,7 +27,7 @@ class Bootstrap implements ApplicationListener<ApplicationReadyEvent> {
             //println u
         }
 
-        def usuarioRetorno = usuarioRepository.findByEmail("romulo.fagundes@gmail.com")
+        def usuarioRetorno = usuarioRepository.findFirstByEmail("romulo.fagundes@gmail.com")
         println "Usuario encontrado: ${usuarioRetorno.id}"
 
     }
